@@ -1,15 +1,29 @@
-def constant_value_assignment(s):
+def solve (word):
+    word = word.lower()
+    alphabet="abcdefghijklmnopqrstuvwxyz"
+    vowels="aeiou"
     
-    vowels = 'aeiou'
-    max_value = 0
-    current_value = 0
+    current_sum = 0
+    max_value=0
+    current_string=''
+    max_value_string=''
 
-    for char in s:
-        if char not in vowels:
-            current_value += ord(char) - ord('a') + 1
-            if current_value > max_value:
-                max_value = current_value
+    print(f"Solve word {word}")
+    
+    for char in word:
+        if not char in vowels:
+            current_sum += alphabet.index(char)+1
+            current_string +=char
+            
         else:
-            current_value = 0
+            max_value = max(max_value, current_sum)
+            max_value_string = current_string if max_value == current_sum else max_value_string
+            current_sum = 0
+            current_string = ''
+            
+    max_value = max(max_value, current_sum)
+    max_value_string = current_string if max_value == current_sum else max_value_string
 
-    return max_value
+    return print (f'The max value is {max_value} for string {max_value_string}')
+            
+    
